@@ -1,0 +1,150 @@
+/** ELEMENTOS GENERALES **/
+
+body {
+    margin: 0;
+    background-color: white;
+    font-family: "poppins", sans-serif;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+/** PANTALLA DE INICIO **/
+
+#splash-screen{
+    background-color: #f90608;
+    padding: 100px;
+    margin: 0;
+}
+
+#splash-screen img {
+    width: 80px;
+    transform: rotate(15deg);
+    padding-bottom: 40px;
+}
+
+#splash-screen h1 {
+    font-family: "Jersey 10", sans-serif;
+    color: white;
+    font-size: 60px;
+    font-weight: 100;
+    margin-top: -20px;
+}
+
+#splash-screen h2 {
+    font-family: "italiano", cursive;
+    color: white;
+    font-size: 40px;
+    font-weight: 100;
+    margin-top: -70px;
+    transform: rotate(-3deg);
+}
+
+.white-btns {
+    background-color: white;
+    width: 200px;
+    color: #f90608;
+    padding: 16px;
+    font-size: 20px;
+    border-radius: 16px;
+    border: none;
+    font-family: "poppins";
+    font-weight: 500;
+}
+
+/** PANTALLA DE JUEGO **/
+
+#score-and-health {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    justify-items:center;
+}
+
+#health {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+progress {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 150px;
+    height : 16px;
+    border: 2px black;
+    border-style: outset;
+    border-radius: 5px;
+ }
+ progress::-webkit-progress-bar {
+    background-color: #faf3de;
+ }
+ progress::-webkit-progress-value {
+    background-color: #f90608;
+ }
+
+#game-screen label, p {
+    font-family: "Jersey 10", sans-serif;
+    color: #f90608;
+    font-size: 28px;
+    font-weight: lighter;
+}
+
+#game-box {
+    background-color: #ffd5d5;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    border: 2px solid black;
+    /* background-image: url("../images/bg-beige.jpg");
+    background-position: center;
+    background-size: cover; */
+}
+
+#game-box * {
+    pointer-events: none;
+}
+
+/** PANTALLA DE GAME OVER **/
+
+#game-over-screen {
+    background-color: #fdd1c4;
+    padding: 100px;
+}
+
+#game-over-screen h1{
+    font-family: "Jersey 10", sans-serif;
+    color: #f90608;
+    font-size: 100px;
+    font-weight: 100;
+    margin-top: -20px;
+}
+
+#game-over-screen #sad-emoji{
+    font-size: 70px;
+    margin-top: -50px;
+}
+
+/** PANTALLA DE RESULTADOS **/
+#results-screen {
+    background-color: #f90608;
+    padding: 50px;
+}
+
+#results-screen h1 {
+    font-family: "Jersey 10", sans-serif;
+    color: white;
+    font-size: 60px;
+    font-weight: 100;
+}
+
+/** DISPLAY BLOCK AL INICIO **/
+#game-screen, #game-over-screen, #results-screen {
+    display: none;
+}

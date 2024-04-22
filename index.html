@@ -3,9 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Peperoni Project</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <!--todo AÑADIR FAVICON AL FINAL-->
+
+    <!-- FUENTES -->
+    <!-- Fuente para "Project" -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+
+    <!-- Fuente para "Peperoni" -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Jersey+10&display=swap" rel="stylesheet"> 
+
+    <!-- Fuente para texto general -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Jersey+10&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- PANTALLA DE INICIO -->
+    <div id="splash-screen" class="container">
+        <h1>Peperoni</h1>
+        <h2>project</h2>
+        <img src="./images/slice-pizza.png" alt="slice pizza">
+        <button id="start-btn" class="white-btns">Start</button>
+    </div>
     
+    <!-- PANTALLA DE JUEGO  -->
+    <div id="game-screen" class="container">
+        <!-- Elementos: puntuacion (nº de igredientes) y vida -->
+        <div id="score-and-health">
+            <div id="health">
+                <label for="file">❤️</label>
+                <progress id="file" max="100" value="100">100%</progress>
+            </div>
+            <div id="score">
+                <p>⭐️ 0</p>
+            </div>
+        </div>
+        <!-- escenario de juego -->
+        <div id="game-box">
+
+        </div>
+    </div>
+
+    <!-- PANTALLA GAME OVER -->
+    <div id="game-over-screen" class="container">
+        <h1>Game Over</h1>
+        <p id="sad-emoji">🥲</p>
+        <button class="white-btns" class="re-start-btn"> start again</button>
+    </div>
+
+    <!-- PANTALLA RESULTADOS -->
+    <div id="results-screen" class="container">
+        <h1>Results</h1>
+        <button class="white-btns" class="re-start-btn"> start again</button>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./js/main.js"></script>
+    <script src="./js/game.js"></script>
+    <script src="./js/chef.js"></script>
+
 </body>
 </html>
