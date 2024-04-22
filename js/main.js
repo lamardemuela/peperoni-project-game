@@ -19,6 +19,9 @@ const progressBarNode = document.querySelector("progress")
 // score
 const scoreNode = document.querySelector("#score")
 
+// variable game para poder acceder a ella
+let game;
+
 
 
 // ** FUNCIONES GLOBALES DE CAMBIO DE ESTADO E INICIO
@@ -29,13 +32,25 @@ function startGame() {
     gameScreenNode.style.display = "flex"
     // 3. iniciamos el juego
     // creamos el objeto que obtendrá todo nuestro juego (desde la clase Game)
-    const game = new Game()
+    game = new Game()
     console.log(game) // para probar
     game.start()
+    game.initBlocksFrecuency()
 }
 
 
 
 
 // ** EVENT LISTENER **
+// boton Start: iniciar el juego
 startBtnNode.addEventListener("click", startGame)
+
+// tecla flecha hacia abajo
+addEventListener("keydown", (event) => {
+    // console.log(event.code)
+    if (event.code === "ArrowDown") {
+        game.chef.moveDown()
+    } else if (event.code === "ArrowUp") {
+        game.chef.moveUp()
+    }
+})

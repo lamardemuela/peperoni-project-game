@@ -3,18 +3,22 @@ class Game {
     constructor() {
         // nuestro juego va a tener una propiedad de un chef
         this.chef = new Chef()
-    
-        //todo obstaculo bloque
+        //obstaculo bloque
+        // Si tuvieramos solo un block: this.block  = new Block(), pero tendremos muchos, que guardamos en un array:
+        this.blocksArr = []
+
         //todo obstaculo piña
         //todo ingredientes
         
-
     }
 
 
     //metodos
     gameLoop(){
-        console.log("juego andando");
+        // console.log("juego andando");
+        this.blocksArr.forEach((eachBlock) => {
+            eachBlock.moveEffect()
+        })
     }
 
     start() {
@@ -23,11 +27,28 @@ class Game {
         }, Math.round(1000/60))
     }
 
+    //funcion para cuando aparecen los blocks
+    appearBlocks() {
+        let spaceBtwBlocks = 300
+        let randomPosY = Math.floor(Math.random() * 400)
+        // fila 1 de blocks
+        let rowBlock1 = new Block(randomPosY)
+        this.blocksArr.push(rowBlock1)
+
+        // fila 2 de blocks
+        let rowBlock2 = new Block(randomPosY + spaceBtwBlocks)
+        this.blocksArr.push(rowBlock2)
+    }
+
+    initBlocksFrecuency() {
+        setInterval(() => {
+            this.appearBlocks()
+        }, 2000)
+    }
+
     
 
-    //todo movimiento de obstaculo bloque
-    //todo aparecen los bloques
-    //todo desaparecen los bloques
+    
 
     //todo movimiento de obstaculo piña
     //todo aparecen las piñas
