@@ -13,7 +13,7 @@ class Block {
 
         // valores ejeX, ejeY 
         if(this.type === "toRight") {
-            this.x = 0
+            this.x = -10
             this.y = Math.floor(Math.random() * 250) + 250
         }else if(this.type === "toLeft") {
             this.x = 800
@@ -36,7 +36,7 @@ class Block {
 
     // metodos
     // movimiento de obstaculo bloque
-    moveEffect() {
+    blockMoveEffect() {
         if(this.type === "toRight") {
             this.x += this.blockSpeed
             this.node.style.left = `${this.x}px`

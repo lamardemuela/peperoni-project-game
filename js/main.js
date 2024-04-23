@@ -14,10 +14,10 @@ const reStartBtnNode = document.querySelector(".re-start-btn")
 const gameboxNode = document.querySelector("#game-box")
 
 // progress bar
-const progressBarNode = document.querySelector("progress")
+const progressBarNode = document.querySelector("progress");
 
 // score
-const scoreNode = document.querySelector("#score")
+const scoreNode = document.querySelector("#score");
 
 // variable game para poder acceder a ella
 let game;
@@ -36,6 +36,7 @@ function startGame() {
     console.log(game) // para probar
     game.start()
     game.initBlocksFrecuency()
+    game.initIngsFrecuency()
 }
 
 

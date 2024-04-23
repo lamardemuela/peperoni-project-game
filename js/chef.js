@@ -1,47 +1,45 @@
 class Chef {
-    // propiedades
-    constructor() {
-        // nodo: creamos imagen del chef y se la damos
-        this.node = document.createElement("img")
-        this.node.id = "chef"
-        this.node.src = "./images/chef.png"
+  // propiedades
+  constructor() {
+    // nodo: creamos imagen del chef y se la damos
+    this.node = document.createElement("img");
+    this.node.id = "chef";
+    this.node.src = "./images/chef.png";
 
-        // añadimos el chef al game-box
-        gameboxNode.append(this.node)
+    // añadimos el chef al game-box
+    gameboxNode.append(this.node);
 
-        // valores ejeX, ejeY y ancho
-        this.x = 340
-        this.y = 240
-        this.w = 24
-        this.h = 40
+    // valores ejeX, ejeY y ancho
+    this.x = 340;
+    this.y = 240;
+    this.w = 24;
+    this.h = 40;
 
-        //posicion, top, left y tamaño
-        this.node.style.position = "absolute"
-        this.node.style.top = `${this.y}px`
-        this.node.style.left = `${this.x}px`
-        this.node.style.width = `${this.w}px`
-        this.node.style.height = `${this.h}px`
+    //posicion, top, left y tamaño
+    this.node.style.position = "absolute";
+    this.node.style.top = `${this.y}px`;
+    this.node.style.left = `${this.x}px`;
+    this.node.style.width = `${this.w}px`;
+    this.node.style.height = `${this.h}px`;
 
+    //velocidad de movimiento
+    this.chefSpeed = 40;
 
-        //velocidad de movimiento
-        this.chefSpeed = 40
+    // propiedad health, entre 0 y 100
+    this.health = progressBarNode
+    // score
+    this.score = scoreNode
+  }
 
-        // propiedad health, entre 0 y 100
-        this.health = progressBarNode.value
-        // score
-        this.score = scoreNode.innerText
-    }
+  // metodos
+  //movimiento de chef hacia arrba y acia abajo
+  moveDown() {
+    this.y += this.chefSpeed;
+    this.node.style.top = `${this.y}px`;
+  }
 
-    // metodos
-    //movimiento de chef hacia arrba y acia abajo
-    moveDown() {
-        this.y += this.chefSpeed
-        this.node.style.top = `${this.y}px`
-    }
-
-    moveUp() {
-        this.y -= this.chefSpeed
-        this.node.style.top = `${this.y}px`
-    }
-
+  moveUp() {
+    this.y -= this.chefSpeed;
+    this.node.style.top = `${this.y}px`;
+  }
 }
