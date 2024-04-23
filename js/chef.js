@@ -10,18 +10,21 @@ class Chef {
         gameboxNode.append(this.node)
 
         // valores ejeX, ejeY y ancho
-        this.x = 30
-        this.y = 200
-        this.w = 32
+        this.x = 340
+        this.y = 240
+        this.w = 24
+        this.h = 40
 
         //posicion, top, left y tamaño
         this.node.style.position = "absolute"
         this.node.style.top = `${this.y}px`
         this.node.style.left = `${this.x}px`
         this.node.style.width = `${this.w}px`
+        this.node.style.height = `${this.h}px`
+
 
         //velocidad de movimiento
-        this.chefSpeed = 20
+        this.chefSpeed = 40
 
         // propiedad health, entre 0 y 100
         this.health = progressBarNode.value

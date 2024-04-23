@@ -59,7 +59,7 @@ body {
 /** PANTALLA DE JUEGO **/
 
 #score-and-health {
-    width: 100%;
+    width: 800px; 
     display: flex;
     justify-content: space-between;
     justify-items:center;
