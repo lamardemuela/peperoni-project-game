@@ -1,16 +1,25 @@
 class Block {
-    constructor(posY) {
+    constructor(type) {
         // nodo: creamos imagen del bloque y se la damos
         this.node = document.createElement("img")
         this.node.id = "block-obstacle"
         this.node.src = "./images/block.png"
 
+        //diferenciamos el type, si va hacia la izquierda o hacia la derecha
+        this.type = type
+
         // añadimos el chef al game-box
         gameboxNode.append(this.node)
 
-        // valores ejeX, ejeY y ancho
-        this.x = 800
-        this.y = posY
+        // valores ejeX, ejeY 
+        if(this.type === "toRight") {
+            this.x = 0
+            this.y = Math.floor(Math.random() * 250) + 250
+        }else if(this.type === "toLeft") {
+            this.x = 800
+            this.y = Math.floor(Math.random() * 250) 
+        }
+        //ancho y alto
         this.w = 60
         this.h = 20
 
@@ -26,14 +35,20 @@ class Block {
     }
 
     // metodos
-    //todo movimiento de obstaculo bloque
+    // movimiento de obstaculo bloque
     moveEffect() {
-        this.x -= this.blockSpeed
-        this.node.style.left = `${this.x}px`
+        if(this.type === "toRight") {
+            this.x += this.blockSpeed
+            this.node.style.left = `${this.x}px`
+        }else if(this.type === "toLeft") {
+            this.x -= this.blockSpeed
+            this.node.style.left = `${this.x}px`
+        }
+        
     }
 
 
-    //todo aparecen los bloques
+
     //todo desaparecen los bloques
     
 }
