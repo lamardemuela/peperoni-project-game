@@ -20,31 +20,22 @@ class Game {
       "pina",
       "salsa",
     ];
+
+    // propiedad para el timer
+    this.gameDuration = 120;
+    this.timeRemaining = this.gameDuration;
+    // convertir el time remaining en minutos y segundos
+    this.minutes = Math.floor(this.timeRemaining / 60)
+      .toString()
+      .padStart(2, "0");
+    this.seconds = (this.timeRemaining % 60).toString().padStart(2, "0");
+
+    // timer en el DOM
+    this.timerNode = document.querySelector("#timeRemaining");
+    this.timerNode.innerText = `${this.minutes}:${this.seconds}`;
   }
 
   //metodos
-  gameLoop() {
-    // console.log("juego andando");
-    this.blocksArr.forEach((eachBlock) => {
-      eachBlock.blockMoveEffect();
-    });
-
-    this.collisionChefBlock();
-    this.removeBlocks();
-    this.removeChef();
-
-    this.ingredientsArr.forEach((eachIngredient) => {
-      eachIngredient.ingMoveEffect();
-    });
-
-    this.collisionChefIgredient()
-  }
-
-  start() {
-    setInterval(() => {
-      this.gameLoop();
-    }, Math.round(1000 / 60));
-  }
 
   //funcion para cuando aparecen los blocks
   appearBlocks() {
@@ -65,7 +56,7 @@ class Game {
   initBlocksFrecuency() {
     setInterval(() => {
       this.appearBlocks();
-    }, 1500);
+    }, 1000);
   }
 
   // colision chef-block
@@ -145,32 +136,61 @@ class Game {
         this.chef.y + this.chef.h > eachIngredient.y
       ) {
         // Collision detected!
-        if(eachIngredient.type === "pina") {
-            this.chef.health.value -= 1
-        }else if(eachIngredient.type === "peperoni") {
-            if (this.chef.health.value < 100) {
-                this.chef.health.value += 1
-            }
-        }else{
-            this.chef.score.innerText++
+        if (eachIngredient.type === "pina") {
+          this.chef.health.value -= 10;
+        } else if (eachIngredient.type === "peperoni") {
+          if (this.chef.health.value < 100) {
+            this.chef.health.value += 10;
+          }
+        } else {
+          this.chef.score.innerText++;
         }
-        eachIngredient.node.remove()
-        this.ingredientsArr.slice(index, 1)
+        console.log("colisionando");
+        eachIngredient.node.remove();
+        this.ingredientsArr.splice(index, 1);
       }
     });
   }
+
+  // ** TIMER **
+  appearTimer() {
+    timer = setInterval(() => {
+      this.timeRemaining -= 1;
+      this.minutes = Math.floor(this.timeRemaining / 60)
+        .toString()
+        .padStart(2, "0");
+      this.seconds = (this.timeRemaining % 60).toString().padStart(2, "0");
+      this.timerNode.innerText = `${this.minutes}:${this.seconds}`;
+
+      if (this.timeRemaining === 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
+
+  // ** GAME LOOP **
+  gameLoop() {
+    this.blocksArr.forEach((eachBlock) => {
+      eachBlock.blockMoveEffect();
+    });
+
+    this.collisionChefBlock();
+    this.removeBlocks();
+    this.removeChef();
+
+    this.ingredientsArr.forEach((eachIngredient) => {
+      eachIngredient.ingMoveEffect();
+    });
+
+    this.collisionChefIgredient();
+  }
+
+  start() {
+    setInterval(() => {
+      this.gameLoop();
+    }, Math.round(1000 / 60));
+  }
 }
-
-//todo movimiento de obstaculo piña
-//todo aparecen las piñas
-//todo desaparecen las piñas
-
-//todo movimiento de ingredientes
-//todo aparecen los ingredientes
-//todo desaparecen los ingredientes
-
-//todo colision chef-bloque
-//todo colision chef-piña
 
 //todo accion de game over, terminar el juego
 //todo accion de resultados, terminar el juego

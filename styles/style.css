@@ -65,7 +65,7 @@ body {
     justify-items:center;
 }
 
-#health {
+#health, #timeRemaining {
     display: flex;
     justify-content: start;
     align-items: center;

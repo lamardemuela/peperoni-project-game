@@ -34,12 +34,16 @@ class Chef {
   // metodos
   //movimiento de chef hacia arrba y acia abajo
   moveDown() {
-    this.y += this.chefSpeed;
-    this.node.style.top = `${this.y}px`;
+    if ((this.y + this.h) < gameboxNode.offsetHeight) {
+      this.y += this.chefSpeed;
+      this.node.style.top = `${this.y}px`;
+    }
   }
 
   moveUp() {
-    this.y -= this.chefSpeed;
-    this.node.style.top = `${this.y}px`;
+    if (this.y > 0) {
+      this.y -= this.chefSpeed;
+      this.node.style.top = `${this.y}px`;
+    }
   }
 }

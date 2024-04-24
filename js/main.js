@@ -19,6 +19,9 @@ const progressBarNode = document.querySelector("progress");
 // score
 const scoreNode = document.querySelector("#score");
 
+ //creamos una variable del timer para poder acceder a ella después
+ let timer;
+
 // variable game para poder acceder a ella
 let game;
 
@@ -34,6 +37,7 @@ function startGame() {
     // creamos el objeto que obtendrá todo nuestro juego (desde la clase Game)
     game = new Game()
     console.log(game) // para probar
+    game.appearTimer()
     game.start()
     game.initBlocksFrecuency()
     game.initIngsFrecuency()
@@ -55,3 +59,7 @@ addEventListener("keydown", (event) => {
         game.chef.moveUp()
     }
 })
+
+
+  
+
