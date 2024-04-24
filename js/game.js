@@ -2,6 +2,17 @@ class Game {
   // **** PROPIEDADES DE GAME ****
 
   constructor() {
+    // ----- sonidos -----
+    this.sonidosArr = [
+      new Audio("./sounds/coll-blocks.ogg"),
+      new Audio("./sounds/coll-ing.ogg"),
+      new Audio("./sounds/coll-peperoni.ogg"),
+      new Audio("./sounds/coll-pina.ogg"),
+      new Audio("./sounds/game-over.ogg"),
+      new Audio("./sounds/results.ogg"),
+      new Audio("./sounds/sound-bg.ogg")
+    ]
+
     // nuestro juego va a tener una propiedad de un chef
     this.chef = new Chef();
     console.log(this.chef);
@@ -20,6 +31,11 @@ class Game {
       "peperoni",
       "pina",
       "salsa",
+      "queso",
+      "salsa-tomate",
+      "salchicha",
+      "huevo",
+      "bacon"
     ];
 
     // propiedad para el timer
@@ -39,7 +55,6 @@ class Game {
     this.gameIntervalId;
     this.blocksIntervalId;
     this.ingIntervalId;
-
   }
 
   // **** METODOS DE GAME ****
@@ -64,8 +79,9 @@ class Game {
 
   initBlocksFrecuency() {
     this.blocksIntervalId = setInterval(() => {
+      console.log("interval de block sigue andando")
       this.appearBlocks();
-    }, 1000);
+    }, 950);
   }
 
   // colision chef-block
@@ -79,16 +95,20 @@ class Game {
       ) {
         // Collision detected!
         if (eachBlock.type === "toLeft") {
+          this.sonidosArr[0].play()
           this.chef.x -= 40;
           this.chef.node.style.left = `${this.chef.x}px`;
-          if(this.chef.x < 0) {
-            this.gameOver()
+          if (this.chef.x < 0) {
+            this.sonidosArr[4].play()
+            this.gameOver();
           }
         } else if (eachBlock.type === "toRight") {
+          this.sonidosArr[0].play()
           this.chef.x += 40;
           this.chef.node.style.left = `${this.chef.x}px`;
-          if(this.chef.x > 800 + this.chef.w) {
-            this.gameOver()
+          if (this.chef.x > 800 + this.chef.w) {
+            this.sonidosArr[4].play()
+            this.gameOver();
           }
         }
       }
@@ -116,8 +136,8 @@ class Game {
     });
   }
 
-   // * CHEF *
-  
+  // * CHEF *
+
   // desaparecer chef
   removeChef() {
     if (this.chef.x < 0 - this.chef.w || this.chef.x > 800 + this.chef.w) {
@@ -126,23 +146,32 @@ class Game {
     }
   }
 
-   // * INGREDIENTES *
+  // * INGREDIENTES *
 
   // aparecen los ingredientes
   appearIngredients() {
-    let randomTypeIng = Math.floor(
-      Math.random() * this.typesIngredientsArr.length
-    );
-    let randomIngredient = new Ingredient(
-      this.typesIngredientsArr[randomTypeIng]
-    );
-    this.ingredientsArr.push(randomIngredient);
+    let randomBlock = Math.round(Math.random());
+    if (randomBlock === 0) {
+      // mostramos piñas
+      let pinaIngredient = new Ingredient(this.typesIngredientsArr[5])
+      this.ingredientsArr.push(pinaIngredient)
+    } else {
+      // mostramos el resto de ingredientes
+      let randomTypeIng = Math.floor(
+        Math.random() * this.typesIngredientsArr.length
+      );
+      let randomIngredient = new Ingredient(
+        this.typesIngredientsArr[randomTypeIng]
+      );
+      this.ingredientsArr.push(randomIngredient);
+    }
   }
 
   initIngsFrecuency() {
     this.ingIntervalId = setInterval(() => {
+      console.log("interval de ingredientes sigue andando")
       this.appearIngredients();
-    }, 2000);
+    }, 950);
   }
 
   // colision chef - ingredientes
@@ -156,17 +185,24 @@ class Game {
       ) {
         // Collision detected!
         if (eachIngredient.type === "pina") {
+          this.sonidosArr[3].play()
           this.chef.health.value -= 25;
           if (this.chef.health.value === 0) {
-            this.gameOver()
+            this.sonidosArr[4].play()
+            this.gameOver();
           }
         } else if (eachIngredient.type === "peperoni") {
+          this.chef.score.innerText++;
+          this.chef.ingredientsListArr.push(eachIngredient.type);
+          this.sonidosArr[1].play()
           if (this.chef.health.value < 100) {
             this.chef.health.value += 10;
+            this.sonidosArr[2].play()
           }
         } else {
+          this.sonidosArr[1].play()
           this.chef.score.innerText++;
-          this.chef.ingredientsListArr.push(eachIngredient.type)
+          this.chef.ingredientsListArr.push(eachIngredient.type);
         }
         console.log("colisionando");
         eachIngredient.node.remove();
@@ -179,6 +215,7 @@ class Game {
 
   appearTimer() {
     timer = setInterval(() => {
+      console.log("interval de timer sigue andando")
       this.timeRemaining -= 1;
       this.minutes = Math.floor(this.timeRemaining / 60)
         .toString()
@@ -187,8 +224,9 @@ class Game {
       this.timerNode.innerText = `${this.minutes}:${this.seconds}`;
 
       if (this.timeRemaining === 0) {
+        this.sonidosArr[5].play()
         clearInterval(timer);
-        this.results()
+        this.results();
       }
     }, 1000);
   }
@@ -197,38 +235,42 @@ class Game {
 
   gameOver() {
     // 1. todos los intervalos deben detenerse
-    clearInterval(this.gameIntervalId)
-    clearInterval(this.blocksIntervalId)
-    clearInterval(this.ingIntervalId)
-    // 2. ocultar pantalla de juego y forzamos ocultar pantalla de gameOver
-    gameScreenNode.style.display = "none"
-    gameOverScreenNode.style.display = "none"
+    clearInterval(this.gameIntervalId);
+    clearInterval(this.blocksIntervalId);
+    clearInterval(this.ingIntervalId);
+    clearInterval(timer)
+    // 2. ocultar pantalla de juego 
+    gameScreenNode.style.display = "none";
+    gameboxNode.innerHTML = ""
     // 3. mostrar pantalla game over
-    gameOverScreenNode.style.display = "flex"
+    gameOverScreenNode.style.display = "flex";
+    // 4. paramos el sonido
+    this.sonidosArr[6].pause()
   }
 
   // * RESULTS *
 
   results() {
     // 1. todos los intervalos deben detenerse
-    clearInterval(this.gameIntervalId)
-    clearInterval(this.blocksIntervalId)
-    clearInterval(this.ingIntervalId)
+    clearInterval(this.gameIntervalId);
+    clearInterval(this.blocksIntervalId);
+    clearInterval(this.ingIntervalId);
+    clearInterval(timer)
     // 2. ocultar pantalla de juego
-    gameScreenNode.style.display = "none"
+    gameScreenNode.style.display = "none";
+    gameboxNode.innerHTML = ""
     // 3. mostrar pantalla results
-    resultsScreenNode.style.display = "flex"
+    resultsScreenNode.style.display = "flex";
     // 4. mostrar score
-    finalScoreNode.append(this.chef.score.innerText)
+    finalScoreNode.innerText = this.chef.score.innerText;
     // 5. mostrar ingredientes conseguidos
-    // caughtIngNode.append(this.chef.ingredientsListArr)
-    
     this.chef.ingredientsListArr.forEach((eachIngredient) => {
-      this.liNode = document.createElement("li")
-      this.liNode.innerText = eachIngredient
-      caughtIngNode.append(this.liNode)
-    })
-
+      this.liNode = document.createElement("li");
+      this.liNode.innerText = eachIngredient;
+      caughtIngNode.append(this.liNode);
+    });
+    //6. paramos el sonido
+    this.sonidosArr[6].pause()
   }
 
   // * GAME LOOP *
@@ -250,12 +292,15 @@ class Game {
   }
 
   start() {
+    // musica de fondo
+    this.sonidosArr[6].play()
+    // reiniciamos health y score
+    scoreNode.innerText = 0
+    progressBarNode.value = 100
     this.gameIntervalId = setInterval(() => {
+      console.log("interval de start sigue andando")
       this.gameLoop();
     }, Math.round(1000 / 60));
   }
 }
 
-//todo accion de game over, terminar el juego
-//todo accion de resultados, terminar el juego
-//todo accion de reiniciar el juego

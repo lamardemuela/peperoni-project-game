@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peperoni Project</title>
     <link rel="stylesheet" href="./styles/style.css">
-    <!--todo AÑADIR FAVICON AL FINAL-->
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
 
     <!-- FUENTES -->
     <!-- Fuente para "Project" -->
@@ -30,6 +31,25 @@
         <h1>Peperoni</h1>
         <h2>project</h2>
         <img src="./images/slice-pizza.png" alt="slice pizza">
+        <!-- instrucciones del juego -->
+        <div id="info">
+            <h3>Cómo jugar</h3>
+            <div class="info-element"> 
+                <p>Tienes que conseguir el mayor º de ingredientes para tu pizza</p>
+            </div>
+            <div class="info-element">
+                <img src="./images/block.png" alt="obstáculo">
+                <p>Cuidado con los obstáculos que te impedirán el paso e intentarán echarte de la pantalla</p>
+            </div>
+            <div class="info-element">
+                <img src="./images/pina.png" alt="piña">
+                <p>¿Te gusta la piña en la pizza? Si la respuesta es afirmativa lo siento, la piña te quitará vida (en este juego y en general) </p>
+            </div>
+            <div class="info-element">
+                <img src="./images/peperoni.png" alt="peperoni">
+                <p>Para reponerte si te tocan las piñas, puedes recargar tu vida cogiendo peperoni</p>
+            </div>
+        </div>
         <button id="start-btn" class="white-btns">Start</button>
     </div>
     
@@ -58,17 +78,18 @@
     <div id="game-over-screen" class="container">
         <h1>Game Over</h1>
         <p id="sad-emoji">🥲</p>
-        <button class="white-btns" class="re-start-btn"> start again</button>
+        <button class="white-btns" id="reStart-gameOver"> start again</button>
     </div>
 
     <!-- PANTALLA RESULTADOS -->
     <div id="results-screen" class="container">
-        <h1>Results</h1>
+        <h1>Good Game!</h1>
         <!-- guardaremos aqui la puntuacion final -->
+        <h2> 🍕  Ingredientes para tu pizza  🍕</h2>
         <div id="final-score"></div>
         <!-- guardaremos aqui los ingredientes que ha conseguido el chef -->
         <ul id="caught-ing-list"></ul>
-        <button class="white-btns" class="re-start-btn"> start again</button>
+        <button class="white-btns" id="reStart-results"> start again</button>
     </div>
 
     <!-- SCRIPTS -->

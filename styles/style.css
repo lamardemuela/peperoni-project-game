@@ -3,7 +3,8 @@
 body {
     margin: 0;
     background-color: white;
-    font-family: "poppins", sans-serif;
+    font-family: "Jersey 10", sans-serif;
+    font-size: 24px;
 }
 .container {
     display: flex;
@@ -17,14 +18,13 @@ body {
 
 #splash-screen{
     background-color: #f90608;
-    padding: 100px;
-    margin: 0;
+    padding: 72px;
 }
 
 #splash-screen img {
-    width: 80px;
+    width: 48px;
     transform: rotate(15deg);
-    padding-bottom: 40px;
+    padding-bottom: 16px;
 }
 
 #splash-screen h1 {
@@ -44,15 +44,48 @@ body {
     transform: rotate(-3deg);
 }
 
+#info {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+#info h3 {
+    font-family: "Jersey 10", sans-serif;
+    color: #f90608;
+    font-size: 32px;
+    text-align: center;
+    margin: 0;
+}
+
+#info img {
+    width: 32px;
+    height: 32px;
+}
+
+#info p{
+    color: black;
+    font-size: 24px;
+}
+
+.info-element {
+    display: flex;
+    justify-content:flex-start;
+    align-items:center;
+    gap: 32px;
+}
+
+
 .white-btns {
     background-color: white;
     width: 200px;
     color: #f90608;
     padding: 16px;
-    font-size: 20px;
+    font-size: 32px;
     border-radius: 16px;
     border: none;
-    font-family: "poppins";
+    font-family: "Jersey 10", sans-serif;
     font-weight: 500;
 }
 
@@ -142,6 +175,13 @@ progress {
     color: #f90608;
     font-size: 60px;
     font-weight: 100;
+}
+
+#results-screen h2 {
+    font-family: "Jersey 10", sans-serif;
+    color: #f90608;
+    font-size: 34px;
+    font-weight: 60;
 }
 
 /** DISPLAY BLOCK AL INICIO **/

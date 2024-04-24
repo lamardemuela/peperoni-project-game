@@ -12,8 +12,8 @@ class Chef {
     // valores ejeX, ejeY y ancho
     this.x = 340;
     this.y = 240;
-    this.w = 24;
-    this.h = 40;
+    this.w = 28;
+    this.h = 48;
 
     //posicion, top, left y tamaño
     this.node.style.position = "absolute";

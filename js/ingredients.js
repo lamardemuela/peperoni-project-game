@@ -22,6 +22,16 @@ class Ingredient {
         this.node.src = "./images/pina.png"
     } else if(type === "salsa") {
         this.node.src = "./images/salsa.png"
+    }else if(type === "queso") {
+        this.node.src = "./images/queso.png"
+    }else if(type === "salsa-tomate") {
+        this.node.src = "./images/salsa-tomate.png"
+    }else if(type === "salchicha") {
+        this.node.src = "./images/salchicha.png"
+    }else if(type === "bacon") {
+        this.node.src = "./images/bacon.png"
+    }else if(type === "huevo") {
+        this.node.src = "./images/huevo.png"
     }
 
     // añadimos el chef al game-box
@@ -30,8 +40,8 @@ class Ingredient {
     // valores ejeX, ejeY y ancho
     this.x = 800
     this.y = Math.floor(Math.random() * 500)
-    this.w = 24
-    this.h = 24
+    this.w = 32
+    this.h = 32
 
     //posicion, top, left y tamaño
     this.node.style.position = "absolute"
