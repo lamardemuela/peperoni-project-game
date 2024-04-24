@@ -19,6 +19,12 @@ const progressBarNode = document.querySelector("progress");
 // score
 const scoreNode = document.querySelector("#score");
 
+// final score
+const finalScoreNode = document.querySelector("#final-score")
+
+// ingredientes conseguidos
+const caughtIngNode = document.querySelector("#caught-ing-list")
+
  //creamos una variable del timer para poder acceder a ella después
  let timer;
 

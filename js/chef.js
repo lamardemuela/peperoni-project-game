@@ -29,6 +29,9 @@ class Chef {
     this.health = progressBarNode
     // score
     this.score = scoreNode
+
+    // ingredientes conseguidos
+    this.ingredientsListArr = []
   }
 
   // metodos

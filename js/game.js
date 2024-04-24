@@ -1,5 +1,6 @@
 class Game {
-  //propiedades
+  // **** PROPIEDADES DE GAME ****
+
   constructor() {
     // nuestro juego va a tener una propiedad de un chef
     this.chef = new Chef();
@@ -22,7 +23,7 @@ class Game {
     ];
 
     // propiedad para el timer
-    this.gameDuration = 120;
+    this.gameDuration = 30;
     this.timeRemaining = this.gameDuration;
     // convertir el time remaining en minutos y segundos
     this.minutes = Math.floor(this.timeRemaining / 60)
@@ -33,9 +34,17 @@ class Game {
     // timer en el DOM
     this.timerNode = document.querySelector("#timeRemaining");
     this.timerNode.innerText = `${this.minutes}:${this.seconds}`;
+
+    // ids de intervalos
+    this.gameIntervalId;
+    this.blocksIntervalId;
+    this.ingIntervalId;
+
   }
 
-  //metodos
+  // **** METODOS DE GAME ****
+
+  // * BLOQUES *
 
   //funcion para cuando aparecen los blocks
   appearBlocks() {
@@ -54,7 +63,7 @@ class Game {
   }
 
   initBlocksFrecuency() {
-    setInterval(() => {
+    this.blocksIntervalId = setInterval(() => {
       this.appearBlocks();
     }, 1000);
   }
@@ -72,9 +81,15 @@ class Game {
         if (eachBlock.type === "toLeft") {
           this.chef.x -= 40;
           this.chef.node.style.left = `${this.chef.x}px`;
+          if(this.chef.x < 0) {
+            this.gameOver()
+          }
         } else if (eachBlock.type === "toRight") {
           this.chef.x += 40;
           this.chef.node.style.left = `${this.chef.x}px`;
+          if(this.chef.x > 800 + this.chef.w) {
+            this.gameOver()
+          }
         }
       }
     });
@@ -101,6 +116,8 @@ class Game {
     });
   }
 
+   // * CHEF *
+  
   // desaparecer chef
   removeChef() {
     if (this.chef.x < 0 - this.chef.w || this.chef.x > 800 + this.chef.w) {
@@ -108,6 +125,8 @@ class Game {
       this.chef.node.remove();
     }
   }
+
+   // * INGREDIENTES *
 
   // aparecen los ingredientes
   appearIngredients() {
@@ -121,7 +140,7 @@ class Game {
   }
 
   initIngsFrecuency() {
-    setInterval(() => {
+    this.ingIntervalId = setInterval(() => {
       this.appearIngredients();
     }, 2000);
   }
@@ -137,13 +156,17 @@ class Game {
       ) {
         // Collision detected!
         if (eachIngredient.type === "pina") {
-          this.chef.health.value -= 10;
+          this.chef.health.value -= 25;
+          if (this.chef.health.value === 0) {
+            this.gameOver()
+          }
         } else if (eachIngredient.type === "peperoni") {
           if (this.chef.health.value < 100) {
             this.chef.health.value += 10;
           }
         } else {
           this.chef.score.innerText++;
+          this.chef.ingredientsListArr.push(eachIngredient.type)
         }
         console.log("colisionando");
         eachIngredient.node.remove();
@@ -152,7 +175,8 @@ class Game {
     });
   }
 
-  // ** TIMER **
+  // * TIMER *
+
   appearTimer() {
     timer = setInterval(() => {
       this.timeRemaining -= 1;
@@ -164,11 +188,51 @@ class Game {
 
       if (this.timeRemaining === 0) {
         clearInterval(timer);
+        this.results()
       }
     }, 1000);
   }
 
-  // ** GAME LOOP **
+  // * GAME OVER *
+
+  gameOver() {
+    // 1. todos los intervalos deben detenerse
+    clearInterval(this.gameIntervalId)
+    clearInterval(this.blocksIntervalId)
+    clearInterval(this.ingIntervalId)
+    // 2. ocultar pantalla de juego y forzamos ocultar pantalla de gameOver
+    gameScreenNode.style.display = "none"
+    gameOverScreenNode.style.display = "none"
+    // 3. mostrar pantalla game over
+    gameOverScreenNode.style.display = "flex"
+  }
+
+  // * RESULTS *
+
+  results() {
+    // 1. todos los intervalos deben detenerse
+    clearInterval(this.gameIntervalId)
+    clearInterval(this.blocksIntervalId)
+    clearInterval(this.ingIntervalId)
+    // 2. ocultar pantalla de juego
+    gameScreenNode.style.display = "none"
+    // 3. mostrar pantalla results
+    resultsScreenNode.style.display = "flex"
+    // 4. mostrar score
+    finalScoreNode.append(this.chef.score.innerText)
+    // 5. mostrar ingredientes conseguidos
+    // caughtIngNode.append(this.chef.ingredientsListArr)
+    
+    this.chef.ingredientsListArr.forEach((eachIngredient) => {
+      this.liNode = document.createElement("li")
+      this.liNode.innerText = eachIngredient
+      caughtIngNode.append(this.liNode)
+    })
+
+  }
+
+  // * GAME LOOP *
+
   gameLoop() {
     this.blocksArr.forEach((eachBlock) => {
       eachBlock.blockMoveEffect();
@@ -186,7 +250,7 @@ class Game {
   }
 
   start() {
-    setInterval(() => {
+    this.gameIntervalId = setInterval(() => {
       this.gameLoop();
     }, Math.round(1000 / 60));
   }

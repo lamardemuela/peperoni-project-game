@@ -133,13 +133,13 @@ progress {
 
 /** PANTALLA DE RESULTADOS **/
 #results-screen {
-    background-color: #f90608;
+    background-color: #fdd1c4;
     padding: 50px;
 }
 
 #results-screen h1 {
     font-family: "Jersey 10", sans-serif;
-    color: white;
+    color: #f90608;
     font-size: 60px;
     font-weight: 100;
 }
