@@ -2,7 +2,8 @@
 
 body {
     margin: 0;
-    background-color: white;
+    background-image: url(../images/body-bg.png);
+    background-size: cover;
     font-family: "Jersey 10", sans-serif;
     font-size: 24px;
 }
@@ -11,7 +12,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    margin: 80px;
 }
 
 /** PANTALLA DE INICIO **/
@@ -79,7 +80,7 @@ body {
 
 .white-btns {
     background-color: white;
-    width: 200px;
+    width: 300px;
     color: #f90608;
     padding: 16px;
     font-size: 32px;
@@ -90,6 +91,22 @@ body {
 }
 
 /** PANTALLA DE JUEGO **/
+#game-screen h1 {
+    font-family: "Jersey 10", sans-serif;
+    color:#f90608;
+    font-size: 60px;
+    font-weight: 100;
+    margin-top: -40px;
+}
+
+#game-screen h2 {
+    font-family: "italiano", cursive;
+    color:#f90608;
+    font-size: 40px;
+    font-weight: 100;
+    margin-top: -70px;
+    transform: rotate(-3deg);
+}
 
 #score-and-health {
     width: 800px; 
@@ -135,9 +152,6 @@ progress {
     overflow: hidden;
     user-select: none;
     border: 2px solid black;
-    /* background-image: url("../images/bg-beige.jpg");
-    background-position: center;
-    background-size: cover; */
 }
 
 #game-box * {
