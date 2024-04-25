@@ -170,10 +170,10 @@ class Game {
     if (randomrestOfIng === 0) {
       // mostramos piñas con diferente velocidad después de los 17s
       if (this.timeRemaining <= 17) {
-        let pinaIngredient = new Ingredient("pina", 4);
+        let pinaIngredient = new Ingredient("pina", 5);
         this.ingredientsArr.push(pinaIngredient);
       } else if (this.timeRemaining >= 17) {
-        let pinaIngredient = new Ingredient("pina", 2.5);
+        let pinaIngredient = new Ingredient("pina", 3);
         this.ingredientsArr.push(pinaIngredient);
       }
     } else {
@@ -183,14 +183,9 @@ class Game {
       );
       let randomIngredient = new Ingredient(
         this.typesIngredientsArr[randomTypeIng],
-        2.5
+        3
       );
-      // si es piña eliminamos ese ing del array, si no, lo añadimos
-      // if (this.typesIngredientsArr[randomTypeIng] === "pina") {
-      //   this.ingredientsArr.splice(randomTypeIng, 1);
-      // } else {
-        this.ingredientsArr.push(randomIngredient);
-      // }
+      this.ingredientsArr.push(randomIngredient);
     }
   }
 
@@ -198,7 +193,7 @@ class Game {
     this.ingIntervalId = setInterval(() => {
       console.log(this.ingIntervalId);
       this.appearIngredients();
-    }, 400);
+    }, 300);
   }
 
   // colision chef - ingredientes
@@ -253,15 +248,7 @@ class Game {
         this.sonidosArr[5].play();
         clearInterval(timer);
         this.results();
-      } //else if (this.timeRemaining < 17) {
-      // a partir de cierto tiempo, sólo las piñas irán más rápido
-      //todo re hacer esto cuando tenga el parametro
-      // this.ingredientsArr.forEach( (eachIngredient) => {
-      //   if (eachIngredient.type === "pina"){
-      //     eachIngredient.ingSpeed = 4
-      //   }
-      // })
-      //}
+      }
     }, 1000);
   }
 
@@ -298,13 +285,22 @@ class Game {
     // 4. mostrar score
     finalScoreNode.innerText = this.chef.score.innerText;
     // 5. mostrar ingredientes conseguidos
+    let ingredientsCounter = {};
     this.chef.ingredientsListArr.forEach((eachIngredient) => {
-      this.liNode = document.createElement("li");
-      this.liNode.innerText = eachIngredient;
-      caughtIngNode.append(this.liNode);
-      console.log("lista", this.liNode.innerText);
+      if (ingredientsCounter[eachIngredient]) {
+        //añadimos propiedad y valor a nuestro objeto
+        ingredientsCounter[eachIngredient]++;
+      } else {
+        ingredientsCounter[eachIngredient] = 1;
+      }
+      console.log("lista", ingredientsCounter);
     });
-
+    for (let key in ingredientsCounter) {
+      console.log(key);
+      this.liNode = document.createElement("li");
+      this.liNode.innerText = `${ingredientsCounter[key]}x ${key}`;
+      caughtIngNode.append(this.liNode);
+    }
     //6. paramos el sonido
     this.sonidosArr[6].pause();
   }
