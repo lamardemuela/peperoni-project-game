@@ -1,6 +1,6 @@
 class Ingredient {
   // propiedades
-  constructor(type) {
+  constructor(type, ingSpeed) {
     // nodo: creamos imagen del bloque y se la damos
     this.node = document.createElement("img");
     this.node.id = "ingrediets";
@@ -51,7 +51,7 @@ class Ingredient {
     this.node.style.height = `${this.h}px`
 
     //velocidad de movimiento
-    this.ingSpeed = 2.5
+    this.ingSpeed = ingSpeed
 
   }
 

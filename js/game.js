@@ -10,8 +10,8 @@ class Game {
       new Audio("./sounds/coll-pina.ogg"),
       new Audio("./sounds/game-over.ogg"),
       new Audio("./sounds/results.ogg"),
-      new Audio("./sounds/sound-bg.ogg")
-    ]
+      new Audio("./sounds/sound-bg.ogg"),
+    ];
 
     // nuestro juego va a tener una propiedad de un chef
     this.chef = new Chef();
@@ -29,13 +29,12 @@ class Game {
       "cebolla",
       "jamon",
       "peperoni",
-      "pina",
       "salsa",
       "queso",
       "salsa-tomate",
       "salchicha",
       "huevo",
-      "bacon"
+      "bacon",
     ];
 
     // propiedad para el timer
@@ -67,7 +66,7 @@ class Game {
     let randomBlock = Math.round(Math.random());
     // cuando el juego vaya por la mitad del tiempo, se invierte el sentido de los bloques
     // console.log(this.timeRemaining)
-    if(this.timeRemaining <= 15) {
+    if (this.timeRemaining <= 15) {
       if (randomBlock === 0) {
         // fila 1 de blocks
         let rowBlock1 = new Block("toLeft", "under");
@@ -79,7 +78,7 @@ class Game {
         this.blocksArr.push(rowBlock2);
         // console.log("bloques hacia la derecha por arriba")
       }
-    }else{
+    } else {
       if (randomBlock === 0) {
         // fila 1 de blocks
         let rowBlock1 = new Block("toLeft", "over");
@@ -112,19 +111,19 @@ class Game {
       ) {
         // Collision detected!
         if (eachBlock.type === "toLeft") {
-          this.sonidosArr[0].play()
+          this.sonidosArr[0].play();
           this.chef.x -= 40;
           this.chef.node.style.left = `${this.chef.x}px`;
           if (this.chef.x < 0) {
-            this.sonidosArr[4].play()
+            this.sonidosArr[4].play();
             this.gameOver();
           }
         } else if (eachBlock.type === "toRight") {
-          this.sonidosArr[0].play()
+          this.sonidosArr[0].play();
           this.chef.x += 40;
           this.chef.node.style.left = `${this.chef.x}px`;
           if (this.chef.x > 800 + this.chef.w) {
-            this.sonidosArr[4].play()
+            this.sonidosArr[4].play();
             this.gameOver();
           }
         }
@@ -169,24 +168,35 @@ class Game {
   appearIngredients() {
     let randomrestOfIng = Math.round(Math.random());
     if (randomrestOfIng === 0) {
-      // mostramos piñas
-      let pinaIngredient = new Ingredient(this.typesIngredientsArr[5])
-      this.ingredientsArr.push(pinaIngredient)
+      // mostramos piñas con diferente velocidad después de los 17s
+      if (this.timeRemaining <= 17) {
+        let pinaIngredient = new Ingredient("pina", 4);
+        this.ingredientsArr.push(pinaIngredient);
+      } else if (this.timeRemaining >= 17) {
+        let pinaIngredient = new Ingredient("pina", 2.5);
+        this.ingredientsArr.push(pinaIngredient);
+      }
     } else {
       // mostramos el resto de ingredientes
       let randomTypeIng = Math.floor(
         Math.random() * this.typesIngredientsArr.length
       );
       let randomIngredient = new Ingredient(
-        this.typesIngredientsArr[randomTypeIng]
+        this.typesIngredientsArr[randomTypeIng],
+        2.5
       );
-      this.ingredientsArr.push(randomIngredient);
+      // si es piña eliminamos ese ing del array, si no, lo añadimos
+      // if (this.typesIngredientsArr[randomTypeIng] === "pina") {
+      //   this.ingredientsArr.splice(randomTypeIng, 1);
+      // } else {
+        this.ingredientsArr.push(randomIngredient);
+      // }
     }
   }
 
   initIngsFrecuency() {
     this.ingIntervalId = setInterval(() => {
-      console.log(this.ingIntervalId)
+      console.log(this.ingIntervalId);
       this.appearIngredients();
     }, 400);
   }
@@ -202,22 +212,22 @@ class Game {
       ) {
         // Collision detected!
         if (eachIngredient.type === "pina") {
-          this.sonidosArr[3].play()
+          this.sonidosArr[3].play();
           this.chef.health.value -= 25;
           if (this.chef.health.value === 0) {
-            this.sonidosArr[4].play()
+            this.sonidosArr[4].play();
             this.gameOver();
           }
         } else if (eachIngredient.type === "peperoni") {
           this.chef.score.innerText++;
           this.chef.ingredientsListArr.push(eachIngredient.type);
-          this.sonidosArr[1].play()
+          this.sonidosArr[1].play();
           if (this.chef.health.value < 100) {
             this.chef.health.value += 10;
-            this.sonidosArr[2].play()
+            this.sonidosArr[2].play();
           }
         } else {
-          this.sonidosArr[1].play()
+          this.sonidosArr[1].play();
           this.chef.score.innerText++;
           this.chef.ingredientsListArr.push(eachIngredient.type);
         }
@@ -240,17 +250,18 @@ class Game {
       this.timerNode.innerText = `${this.minutes}:${this.seconds}`;
 
       if (this.timeRemaining === 0) {
-        this.sonidosArr[5].play()
+        this.sonidosArr[5].play();
         clearInterval(timer);
         this.results();
-      } else if (this.timeRemaining < 17) {
-        // a partir de cierto tiempo, sólo las piñas irán más rápido
-        this.ingredientsArr.forEach( (eachIngredient) => {
-          if (eachIngredient.type === "pina"){
-            eachIngredient.ingSpeed = 4
-          }
-        })
-      }
+      } //else if (this.timeRemaining < 17) {
+      // a partir de cierto tiempo, sólo las piñas irán más rápido
+      //todo re hacer esto cuando tenga el parametro
+      // this.ingredientsArr.forEach( (eachIngredient) => {
+      //   if (eachIngredient.type === "pina"){
+      //     eachIngredient.ingSpeed = 4
+      //   }
+      // })
+      //}
     }, 1000);
   }
 
@@ -261,14 +272,14 @@ class Game {
     clearInterval(this.gameIntervalId);
     clearInterval(this.blocksIntervalId);
     clearInterval(this.ingIntervalId);
-    clearInterval(timer)
-    // 2. ocultar pantalla de juego 
+    clearInterval(timer);
+    // 2. ocultar pantalla de juego
     gameScreenNode.style.display = "none";
-    gameboxNode.innerHTML = ""
+    gameboxNode.innerHTML = "";
     // 3. mostrar pantalla game over
     gameOverScreenNode.style.display = "flex";
     // 4. paramos el sonido
-    this.sonidosArr[6].pause()
+    this.sonidosArr[6].pause();
   }
 
   // * RESULTS *
@@ -278,10 +289,10 @@ class Game {
     clearInterval(this.gameIntervalId);
     clearInterval(this.blocksIntervalId);
     clearInterval(this.ingIntervalId);
-    clearInterval(timer)
+    clearInterval(timer);
     // 2. ocultar pantalla de juego
     gameScreenNode.style.display = "none";
-    gameboxNode.innerHTML = ""
+    gameboxNode.innerHTML = "";
     // 3. mostrar pantalla results
     resultsScreenNode.style.display = "flex";
     // 4. mostrar score
@@ -290,12 +301,12 @@ class Game {
     this.chef.ingredientsListArr.forEach((eachIngredient) => {
       this.liNode = document.createElement("li");
       this.liNode.innerText = eachIngredient;
-      caughtIngNode.append(this.liNode)
-      console.log("lista", this.liNode.innerText)
+      caughtIngNode.append(this.liNode);
+      console.log("lista", this.liNode.innerText);
     });
-    
+
     //6. paramos el sonido
-    this.sonidosArr[6].pause()
+    this.sonidosArr[6].pause();
   }
 
   // * GAME LOOP *
@@ -318,15 +329,14 @@ class Game {
 
   start() {
     // musica de fondo
-    this.sonidosArr[6].play()
+    // this.sonidosArr[6].play();
     // reiniciamos health y score
-    scoreNode.innerText = 0
-    progressBarNode.value = 100
-    // vaciamos el listado de ingredietes anterior 
-    caughtIngNode.innerHTML = ""
+    scoreNode.innerText = 0;
+    progressBarNode.value = 100;
+    // vaciamos el listado de ingredietes anterior
+    caughtIngNode.innerHTML = "";
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
     }, Math.round(1000 / 60));
   }
 }
-
