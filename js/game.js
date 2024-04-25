@@ -65,23 +65,40 @@ class Game {
   appearBlocks() {
     // para que aparezcan de forma aleatoria
     let randomBlock = Math.round(Math.random());
-
-    if (randomBlock === 0) {
-      // fila 1 de blocks
-      let rowBlock1 = new Block("toLeft");
-      this.blocksArr.push(rowBlock1);
-    } else {
-      // fila 2 de blocks
-      let rowBlock2 = new Block("toRight");
-      this.blocksArr.push(rowBlock2);
+    // cuando el juego vaya por la mitad del tiempo, se invierte el sentido de los bloques
+    // console.log(this.timeRemaining)
+    if(this.timeRemaining <= 15) {
+      if (randomBlock === 0) {
+        // fila 1 de blocks
+        let rowBlock1 = new Block("toLeft", "under");
+        this.blocksArr.push(rowBlock1);
+        // console.log("bloques hacia la izquierda por debajo")
+      } else {
+        // fila 2 de blocks
+        let rowBlock2 = new Block("toRight", "over");
+        this.blocksArr.push(rowBlock2);
+        // console.log("bloques hacia la derecha por arriba")
+      }
+    }else{
+      if (randomBlock === 0) {
+        // fila 1 de blocks
+        let rowBlock1 = new Block("toLeft", "over");
+        this.blocksArr.push(rowBlock1);
+        // console.log("bloques hacia la izquierda por arriba")
+      } else {
+        // fila 2 de blocks
+        let rowBlock2 = new Block("toRight", "under");
+        this.blocksArr.push(rowBlock2);
+        // console.log("bloques hacia la derecha por debajo")
+      }
     }
   }
 
   initBlocksFrecuency() {
     this.blocksIntervalId = setInterval(() => {
-      console.log("interval de block sigue andando")
+      // console.log("interval de block sigue andando")
       this.appearBlocks();
-    }, 950);
+    }, 600);
   }
 
   // colision chef-block
@@ -150,8 +167,8 @@ class Game {
 
   // aparecen los ingredientes
   appearIngredients() {
-    let randomBlock = Math.round(Math.random());
-    if (randomBlock === 0) {
+    let randomrestOfIng = Math.round(Math.random());
+    if (randomrestOfIng === 0) {
       // mostramos piñas
       let pinaIngredient = new Ingredient(this.typesIngredientsArr[5])
       this.ingredientsArr.push(pinaIngredient)
@@ -169,9 +186,9 @@ class Game {
 
   initIngsFrecuency() {
     this.ingIntervalId = setInterval(() => {
-      console.log("interval de ingredientes sigue andando")
+      console.log(this.ingIntervalId)
       this.appearIngredients();
-    }, 950);
+    }, 400);
   }
 
   // colision chef - ingredientes
@@ -215,7 +232,6 @@ class Game {
 
   appearTimer() {
     timer = setInterval(() => {
-      console.log("interval de timer sigue andando")
       this.timeRemaining -= 1;
       this.minutes = Math.floor(this.timeRemaining / 60)
         .toString()
@@ -227,6 +243,13 @@ class Game {
         this.sonidosArr[5].play()
         clearInterval(timer);
         this.results();
+      } else if (this.timeRemaining < 17) {
+        // a partir de cierto tiempo, sólo las piñas irán más rápido
+        this.ingredientsArr.forEach( (eachIngredient) => {
+          if (eachIngredient.type === "pina"){
+            eachIngredient.ingSpeed = 4
+          }
+        })
       }
     }, 1000);
   }
@@ -267,8 +290,10 @@ class Game {
     this.chef.ingredientsListArr.forEach((eachIngredient) => {
       this.liNode = document.createElement("li");
       this.liNode.innerText = eachIngredient;
-      caughtIngNode.append(this.liNode);
+      caughtIngNode.append(this.liNode)
+      console.log("lista", this.liNode.innerText)
     });
+    
     //6. paramos el sonido
     this.sonidosArr[6].pause()
   }
@@ -297,8 +322,9 @@ class Game {
     // reiniciamos health y score
     scoreNode.innerText = 0
     progressBarNode.value = 100
+    // vaciamos el listado de ingredietes anterior 
+    caughtIngNode.innerHTML = ""
     this.gameIntervalId = setInterval(() => {
-      console.log("interval de start sigue andando")
       this.gameLoop();
     }, Math.round(1000 / 60));
   }

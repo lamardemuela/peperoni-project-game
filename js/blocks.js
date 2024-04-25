@@ -1,5 +1,5 @@
 class Block {
-    constructor(type) {
+    constructor(type, posY) {
         // nodo: creamos imagen del bloque y se la damos
         this.node = document.createElement("img")
         this.node.id = "block-obstacle"
@@ -11,13 +11,17 @@ class Block {
         // añadimos el chef al game-box
         gameboxNode.append(this.node)
 
+        // posiciones Y (para indicar que salgan por arriba o por abajo)
+        if(posY === "under"){
+            this.y = Math.floor(Math.random() * 250) + 250
+        } else if(posY === "over") {
+            this.y = Math.floor(Math.random() * 250)
+        }
         // valores ejeX, ejeY 
         if(this.type === "toRight") {
-            this.x = -10
-            this.y = Math.floor(Math.random() * 250) + 250
+            this.x = -60    
         }else if(this.type === "toLeft") {
-            this.x = 800
-            this.y = Math.floor(Math.random() * 250) 
+            this.x = 800    
         }
         //ancho y alto
         this.w = 60

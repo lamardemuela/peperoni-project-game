@@ -51,7 +51,7 @@ class Ingredient {
     this.node.style.height = `${this.h}px`
 
     //velocidad de movimiento
-    this.ingSpeed = 2
+    this.ingSpeed = 2.5
 
   }
 
