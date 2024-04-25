@@ -1,99 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peperoni Project</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css" />
     <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png" />
 
     <!-- FUENTES -->
     <!-- Fuente para "Project" -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italianno&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Fuente para "Peperoni" -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Jersey+10&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italianno&family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Fuente para texto general -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Jersey+10&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italianno&family=Jersey+10&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- PANTALLA DE INICIO -->
     <div id="splash-screen" class="container">
-        <h1>Peperoni</h1>
-        <h2>project</h2>
-        <img src="./images/slice-pizza.png" alt="slice pizza" id="splash-img">
-        <!-- instrucciones del juego -->
-        <div id="info">
-            <h3>Cómo jugar</h3>
-            <p>Tienes 30'' para conseguir el mayor número de ingredientes para tu pizza</p>
-            <div class="info-element">
-                <img src="./images/comandos.png" alt="comandos" class="info-img">
-                <p>Sólo puedes moverte hacia arriba y hacia abajo con la ayuda de tu teclado</p>
-            </div>
-            <div class="info-element">
-                <img src="./images/block.png" alt="obstáculo" class="info-img">
-                <p>Cuidado con los obstáculos que te impedirán el paso e intentarán echarte de la pantalla</p>
-            </div>
-            <div class="info-element">
-                <img src="./images/pina.png" alt="piña" class="info-img">
-                <p>¿Te gusta la piña en la pizza? Si la respuesta es afirmativa lo siento, la piña te quitará vida</p>
-            </div>
-            <div class="info-element">
-                <img src="./images/peperoni.png" alt="peperoni" class="info-img">
-                <p>Para reponerte si te tocan las piñas, puedes recargar tu vida cogiendo peperoni</p>
-            </div>
+      <h1>Peperoni</h1>
+      <h2>project</h2>
+      <img src="./images/slice-pizza.png" alt="slice pizza" id="splash-img" />
+      <!-- instrucciones del juego -->
+      <div id="info">
+        <h3>Cómo jugar</h3>
+        <p>
+          Tienes 30'' para conseguir el mayor número de ingredientes para tu
+          pizza
+        </p>
+        <div class="info-element">
+          <img src="./images/comandos.png" alt="comandos" class="info-img" />
+          <p>
+            Sólo puedes moverte hacia arriba y hacia abajo con la ayuda de tu
+            teclado
+          </p>
         </div>
-        <button id="start-btn" class="white-btns">Jugar</button>
+        <div class="info-element">
+          <img src="./images/block.png" alt="obstáculo" class="info-img" />
+          <p>
+            Cuidado con los obstáculos que te impedirán el paso e intentarán
+            echarte de la pantalla
+          </p>
+        </div>
+        <div class="info-element">
+          <img src="./images/pina.png" alt="piña" class="info-img" />
+          <p>
+            ¿Te gusta la piña en la pizza? Si la respuesta es afirmativa lo
+            siento, la piña te quitará vida
+          </p>
+        </div>
+        <div class="info-element">
+          <img src="./images/peperoni.png" alt="peperoni" class="info-img" />
+          <p>
+            Para reponerte si te tocan las piñas, puedes recargar tu vida
+            cogiendo peperoni
+          </p>
+        </div>
+      </div>
+      <button id="start-btn" class="white-btns">Jugar</button>
     </div>
-    
+
     <!-- PANTALLA DE JUEGO  -->
     <div id="game-screen" class="container">
-        <h1>Peperoni</h1>
-        <h2>project</h2>
-        <!-- Elementos: puntuacion (nº de igredientes) y vida -->
-        <div id="score-and-health">
-            <div id="health">
-                <label for="file">❤️</label>
-                <progress id="file" max="100" value="100">100%</progress>
-            </div>
-            <div id="timeRemaining">
-                <span></span>
-            </div>
-            <div id="score">
-                <p>0</p>
-            </div>
+      <h1>Peperoni</h1>
+      <h2>project</h2>
+      <!-- Elementos: puntuacion (nº de igredientes) y vida -->
+      <div id="score-and-health">
+        <div id="health">
+          <label for="file">❤️</label>
+          <progress id="file" max="100" value="100">100%</progress>
         </div>
-        <!-- escenario de juego -->
-        <div id="game-box">
-
+        <div id="timeRemaining">
+          <span></span>
         </div>
+        <div id="score">
+          <p>0</p>
+        </div>
+      </div>
+      <!-- escenario de juego -->
+      <div id="game-box"></div>
     </div>
 
     <!-- PANTALLA GAME OVER -->
     <div id="game-over-screen" class="container">
-        <h1>Game Over</h1>
-        <p id="sad-emoji">🥲</p>
-        <button class="white-btns" id="reStart-gameOver"> Intentar de nuevo</button>
+      <h1>Game Over</h1>
+      <p id="sad-emoji">🥲</p>
+      <button class="white-btns" id="reStart-gameOver">
+        Intentar de nuevo
+      </button>
     </div>
 
     <!-- PANTALLA RESULTADOS -->
     <div id="results-screen" class="container">
-        <h1>Good Game!</h1>
-        <!-- guardaremos aqui la puntuacion final -->
-        <h2> 🍕  Ingredientes para tu pizza  🍕</h2>
-        <div id="final-score"></div>
-        <!-- guardaremos aqui los ingredientes que ha conseguido el chef -->
-        <ul id="caught-ing-list"></ul>
-        <button class="white-btns" id="reStart-results"> Intentar de nuevo</button>
+      <h1>Good Game!</h1>
+      <!-- guardaremos aqui la puntuacion final -->
+      <h2>🍕 Ingredientes para tu pizza 🍕</h2>
+      <div id="final-score"></div>
+      <!-- guardaremos aqui los ingredientes que ha conseguido el chef -->
+      <ul id="caught-ing-list"></ul>
+      <button class="white-btns" id="reStart-results">Intentar de nuevo</button>
     </div>
 
     <!-- SCRIPTS -->
@@ -102,6 +125,5 @@
     <script src="./js/chef.js"></script>
     <script src="./js/blocks.js"></script>
     <script src="./js/ingredients.js"></script>
-
-</body>
+  </body>
 </html>

@@ -1,204 +1,207 @@
 /** ELEMENTOS GENERALES **/
 
 body {
-    margin: 0;
-    background-image: url(../images/body-bg.png);
-    background-size: cover;
-    font-family: "Jersey 10", sans-serif;
-    font-size: 24px;
+  margin: 0;
+  background-image: url(../images/body-bg.png);
+  background-size: cover;
+  font-family: "Jersey 10", sans-serif;
+  font-size: 24px;
 }
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 80px;
 }
 
 /** PANTALLA DE INICIO **/
 
-#splash-screen{
-    background-color: #f90608;
-    padding: 72px;
+#splash-screen {
+  background-color: #f90608;
+  padding: 72px;
 }
 
 #splash-img {
-    width: 48px;
-    transform: rotate(15deg);
-    padding-bottom: 16px;
+  width: 48px;
+  transform: rotate(15deg);
+  padding-bottom: 16px;
 }
 
 #splash-screen h1 {
-    font-family: "Jersey 10", sans-serif;
-    color: white;
-    font-size: 60px;
-    font-weight: 100;
-    margin-top: -20px;
+  font-family: "Jersey 10", sans-serif;
+  color: white;
+  font-size: 60px;
+  font-weight: 100;
+  margin-top: -20px;
 }
 
 #splash-screen h2 {
-    font-family: "italiano", cursive;
-    color: white;
-    font-size: 40px;
-    font-weight: 100;
-    margin-top: -70px;
-    transform: rotate(-3deg);
+  font-family: "italiano", cursive;
+  color: white;
+  font-size: 40px;
+  font-weight: 100;
+  margin-top: -70px;
+  transform: rotate(-3deg);
 }
 
 #info {
-    background-color: white;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 20px;
+  background-color: white;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 20px;
 }
 
 #info h3 {
-    font-family: "Jersey 10", sans-serif;
-    color: #f90608;
-    font-size: 32px;
-    text-align: center;
-    margin: 0;
+  font-family: "Jersey 10", sans-serif;
+  color: #f90608;
+  font-size: 32px;
+  text-align: center;
+  margin: 0;
 }
 
 .info-img {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
-#info p{
-    color: black;
-    font-size: 24px;
+#info p {
+  color: black;
+  font-size: 24px;
 }
 
 .info-element {
-    display: flex;
-    justify-content:flex-start;
-    align-items:center;
-    gap: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
 }
 
-
 .white-btns {
-    background-color: white;
-    width: 300px;
-    color: #f90608;
-    padding: 16px;
-    font-size: 32px;
-    border-radius: 16px;
-    border: none;
-    font-family: "Jersey 10", sans-serif;
-    font-weight: 500;
+  background-color: white;
+  width: 300px;
+  color: #f90608;
+  padding: 16px;
+  font-size: 32px;
+  border-radius: 16px;
+  border: none;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 500;
 }
 
 /** PANTALLA DE JUEGO **/
 #game-screen h1 {
-    font-family: "Jersey 10", sans-serif;
-    color:#f90608;
-    font-size: 60px;
-    font-weight: 100;
-    margin-top: -40px;
+  font-family: "Jersey 10", sans-serif;
+  color: #f90608;
+  font-size: 60px;
+  font-weight: 100;
+  margin-top: -40px;
 }
 
 #game-screen h2 {
-    font-family: "italiano", cursive;
-    color:#f90608;
-    font-size: 40px;
-    font-weight: 100;
-    margin-top: -70px;
-    transform: rotate(-3deg);
+  font-family: "italiano", cursive;
+  color: #f90608;
+  font-size: 40px;
+  font-weight: 100;
+  margin-top: -70px;
+  transform: rotate(-3deg);
 }
 
 #score-and-health {
-    width: 800px; 
-    display: flex;
-    justify-content: space-between;
-    justify-items:center;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
 }
 
-#health, #timeRemaining {
-    display: flex;
-    justify-content: start;
-    align-items: center;
+#health,
+#timeRemaining {
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 progress {
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 150px;
-    height : 16px;
-    border: 2px black;
-    border-style: outset;
-    border-radius: 5px;
- }
- progress::-webkit-progress-bar {
-    background-color: #faf3de;
- }
- progress::-webkit-progress-value {
-    background-color: #f90608;
- }
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 150px;
+  height: 16px;
+  border: 2px black;
+  border-style: outset;
+  border-radius: 5px;
+}
+progress::-webkit-progress-bar {
+  background-color: #faf3de;
+}
+progress::-webkit-progress-value {
+  background-color: #f90608;
+}
 
-#game-screen label, p {
-    font-family: "Jersey 10", sans-serif;
-    color: #f90608;
-    font-size: 28px;
-    font-weight: lighter;
+#game-screen label,
+p {
+  font-family: "Jersey 10", sans-serif;
+  color: #f90608;
+  font-size: 28px;
+  font-weight: lighter;
 }
 
 #game-box {
-    background-color: #ffd5d5;
-    width: 800px;
-    height: 500px;
-    position: relative;
-    overflow: hidden;
-    user-select: none;
-    border: 2px solid black;
+  background-color: #ffd5d5;
+  width: 800px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  border: 2px solid black;
 }
 
 #game-box * {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /** PANTALLA DE GAME OVER **/
 
 #game-over-screen {
-    background-color: #fdd1c4;
-    padding: 100px;
+  background-color: #fdd1c4;
+  padding: 100px;
 }
 
-#game-over-screen h1{
-    font-family: "Jersey 10", sans-serif;
-    color: #f90608;
-    font-size: 100px;
-    font-weight: 100;
-    margin-top: -20px;
+#game-over-screen h1 {
+  font-family: "Jersey 10", sans-serif;
+  color: #f90608;
+  font-size: 100px;
+  font-weight: 100;
+  margin-top: -20px;
 }
 
-#game-over-screen #sad-emoji{
-    font-size: 70px;
-    margin-top: -50px;
+#game-over-screen #sad-emoji {
+  font-size: 70px;
+  margin-top: -50px;
 }
 
 /** PANTALLA DE RESULTADOS **/
 #results-screen {
-    background-color: #fdd1c4;
-    padding: 50px;
+  background-color: #fdd1c4;
+  padding: 50px;
 }
 
 #results-screen h1 {
-    font-family: "Jersey 10", sans-serif;
-    color: #f90608;
-    font-size: 60px;
-    font-weight: 100;
+  font-family: "Jersey 10", sans-serif;
+  color: #f90608;
+  font-size: 60px;
+  font-weight: 100;
 }
 
 #results-screen h2 {
-    font-family: "Jersey 10", sans-serif;
-    color: #f90608;
-    font-size: 34px;
-    font-weight: 60;
+  font-family: "Jersey 10", sans-serif;
+  color: #f90608;
+  font-size: 34px;
+  font-weight: 60;
 }
 
 /** DISPLAY BLOCK AL INICIO **/
-#game-screen, #game-over-screen, #results-screen {
-    display: none;
+#game-screen,
+#game-over-screen,
+#results-screen {
+  display: none;
 }

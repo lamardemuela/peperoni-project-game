@@ -325,7 +325,7 @@ class Game {
 
   start() {
     // musica de fondo
-    // this.sonidosArr[6].play();
+    this.sonidosArr[6].play();
     // reiniciamos health y score
     scoreNode.innerText = 0;
     progressBarNode.value = 100;
