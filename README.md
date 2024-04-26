@@ -5,14 +5,14 @@
 ![Peperoni Project](https://github.com/lamardemuela/peperoni-project-game/blob/main/images/logo-peperoni-project.png?raw=true)
 
 
-# Description
+# Descripción
 
 Durante 30 segundos serás un chef en busca de los ingredientes para tu pizza. Tienes que conseguir los máximos ingredientes posibles.
 
 Para ello, ten en cuenta que los bloques te impedirán el paso y pueden eliminarte del juego y además, las piñas te restarán vida. En Peperoni Project, el peperoni es el que te ayudará a reponer vida.
 
 
-# Main Functionalities
+# Funcionalidades principales
 
 - Sólo puedes mover al chef con el teclado, usando las teclas de flecha hacia arriba y flecha hacia abajo. Estas marcarán el movimiento del personaje.
 - Los bloques se moverán de manera horizontal en ambas direcciones y a mitad del tiempo, cambia la orientación.
@@ -25,14 +25,14 @@ Para ello, ten en cuenta que los bloques te impedirán el paso y pueden eliminar
 - A partir de los 17 segundos, las piñas entran a una velocidad mayor, incrementando la dificultad del juego.
 - La puntuación final marcará el nº de ingredientes conseguidos para la pizza del jugador.
 
-# Backlog Functionalities
+# Funcionalidades Backlog
 
 - Añadir funcionalidad al ingrediente "peperoni" de superpoder: cuando el jugador coja un peperoni será intocable, es decir, no le afectarían las piñas y podría destruir los bloques.
 - Añadir funcionalidad al chef/jugador para que pueda disparar a las piñas.
 - Añadir fluidez cuando un bloque desplaza al chef/jugador.
 - Hacerlo responsive
 
-# Technologies used
+# Tecnologías usadas
 
 - HTML
 - CSS
@@ -41,16 +41,16 @@ Para ello, ten en cuenta que los bloques te impedirán el paso y pueden eliminar
 - JS Classes
 - JS Audio() and JS Image()
 
-# States
+# Estados
 
 - Splash Screen: pantalla de inicio
 - Game Screen: pantalla de juego
 - Gave Over Screen
 - Results Screen: pantalla final, donde se muestran resultados (número y nombre de ingredientes conseguidos)
 
-# Extra Links 
+# Links 
 
-### Slides
+### Presentación
 [Link](https://docs.google.com/presentation/d/1n279qWiL-3BZ_yGBn8_F13sFaAteUBiqLuvSyDoH8Fw/edit?usp=sharing)
 
 ## Deploy
