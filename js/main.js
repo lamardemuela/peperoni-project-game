@@ -45,7 +45,6 @@ function startGame() {
   // 5. iniciamos el juego
   // creamos el objeto que obtendrá todo nuestro juego (desde la clase Game)
   game = new Game();
-  console.log(game); // para probar
   game.appearTimer();
   game.start();
   game.initBlocksFrecuency();
@@ -62,7 +61,6 @@ reStartBtnNodeResuls.addEventListener("click", startGame);
 
 // tecla flecha hacia abajo
 addEventListener("keydown", (event) => {
-  // console.log(event.code)
   if (event.code === "ArrowDown") {
     game.chef.moveDown();
   } else if (event.code === "ArrowUp") {

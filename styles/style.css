@@ -20,12 +20,24 @@ body {
 #splash-screen {
   background-color: #f90608;
   padding: 72px;
+  opacity: 0.9;
 }
 
 #splash-img {
   width: 48px;
+  height: 54px;
   transform: rotate(15deg);
   padding-bottom: 16px;
+}
+
+#title {
+  display: flex;
+  flex-direction: column;
+}
+
+#logo {
+  display: flex;
+  gap: 24px;
 }
 
 #splash-screen h1 {
@@ -34,6 +46,7 @@ body {
   font-size: 60px;
   font-weight: 100;
   margin-top: -20px;
+  text-align: center;
 }
 
 #splash-screen h2 {
@@ -43,6 +56,7 @@ body {
   font-weight: 100;
   margin-top: -70px;
   transform: rotate(-3deg);
+  text-align: center;
 }
 
 #info {
@@ -164,6 +178,7 @@ p {
 #game-over-screen {
   background-color: #fdd1c4;
   padding: 100px;
+  opacity: 0.9;
 }
 
 #game-over-screen h1 {
@@ -183,6 +198,7 @@ p {
 #results-screen {
   background-color: #fdd1c4;
   padding: 50px;
+  opacity: 0.9;
 }
 
 #results-screen h1 {

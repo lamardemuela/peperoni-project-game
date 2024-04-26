@@ -26,18 +26,18 @@ class Chef {
     this.chefSpeed = 40;
 
     // propiedad health, entre 0 y 100
-    this.health = progressBarNode
+    this.health = progressBarNode;
     // score
-    this.score = scoreNode
+    this.score = scoreNode;
 
     // ingredientes conseguidos
-    this.ingredientsListArr = []
+    this.ingredientsListArr = [];
   }
 
   // metodos
   //movimiento de chef hacia arrba y acia abajo
   moveDown() {
-    if ((this.y + this.h) < gameboxNode.offsetHeight) {
+    if (this.y + this.h < gameboxNode.offsetHeight) {
       this.y += this.chefSpeed;
       this.node.style.top = `${this.y}px`;
     }

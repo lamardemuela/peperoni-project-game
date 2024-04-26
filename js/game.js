@@ -12,10 +12,11 @@ class Game {
       new Audio("./sounds/results.ogg"),
       new Audio("./sounds/sound-bg.ogg"),
     ];
-
+    this.sonidosArr.forEach((eachSound) => {
+      eachSound.volume = 0.05;
+    });
     // nuestro juego va a tener una propiedad de un chef
     this.chef = new Chef();
-    console.log(this.chef);
 
     //obstaculo bloque
     // Si tuvieramos solo un block: this.block  = new Block(), pero tendremos muchos, que guardamos en un array:
@@ -65,37 +66,31 @@ class Game {
     // para que aparezcan de forma aleatoria
     let randomBlock = Math.round(Math.random());
     // cuando el juego vaya por la mitad del tiempo, se invierte el sentido de los bloques
-    // console.log(this.timeRemaining)
     if (this.timeRemaining <= 15) {
       if (randomBlock === 0) {
         // fila 1 de blocks
         let rowBlock1 = new Block("toLeft", "under");
         this.blocksArr.push(rowBlock1);
-        // console.log("bloques hacia la izquierda por debajo")
       } else {
         // fila 2 de blocks
         let rowBlock2 = new Block("toRight", "over");
         this.blocksArr.push(rowBlock2);
-        // console.log("bloques hacia la derecha por arriba")
       }
     } else {
       if (randomBlock === 0) {
         // fila 1 de blocks
         let rowBlock1 = new Block("toLeft", "over");
         this.blocksArr.push(rowBlock1);
-        // console.log("bloques hacia la izquierda por arriba")
       } else {
         // fila 2 de blocks
         let rowBlock2 = new Block("toRight", "under");
         this.blocksArr.push(rowBlock2);
-        // console.log("bloques hacia la derecha por debajo")
       }
     }
   }
 
   initBlocksFrecuency() {
     this.blocksIntervalId = setInterval(() => {
-      // console.log("interval de block sigue andando")
       this.appearBlocks();
     }, 600);
   }
@@ -191,7 +186,6 @@ class Game {
 
   initIngsFrecuency() {
     this.ingIntervalId = setInterval(() => {
-      console.log(this.ingIntervalId);
       this.appearIngredients();
     }, 300);
   }
@@ -226,7 +220,6 @@ class Game {
           this.chef.score.innerText++;
           this.chef.ingredientsListArr.push(eachIngredient.type);
         }
-        console.log("colisionando");
         eachIngredient.node.remove();
         this.ingredientsArr.splice(index, 1);
       }
@@ -287,16 +280,15 @@ class Game {
     // 5. mostrar ingredientes conseguidos
     let ingredientsCounter = {};
     this.chef.ingredientsListArr.forEach((eachIngredient) => {
+      // si el objeto no tiene esta propiedad la creamos y si ya existe aumentamos el contador
       if (ingredientsCounter[eachIngredient]) {
         //añadimos propiedad y valor a nuestro objeto
         ingredientsCounter[eachIngredient]++;
       } else {
         ingredientsCounter[eachIngredient] = 1;
       }
-      console.log("lista", ingredientsCounter);
     });
     for (let key in ingredientsCounter) {
-      console.log(key);
       this.liNode = document.createElement("li");
       this.liNode.innerText = `${ingredientsCounter[key]}x ${key}`;
       caughtIngNode.append(this.liNode);
